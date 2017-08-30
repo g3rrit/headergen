@@ -1,0 +1,63 @@
+Example:
+
+               - main.hc -
+--------------------------------------------
+
+#head
+#ifndef MAIN_H
+#define MAIN_H
+
+double squareNum(double num);
+
+#endif
+
+#source
+#include"main.h"
+
+int main()
+{
+    printf("square of 3 is: %f\n", squareNum(3));
+    return 0;
+}
+
+double squareNum(double num)
+{
+    return num * num;
+}
+
+--------------------------------------------
+
+
+get compiled to:
+
+
+              - main.h -
+--------------------------------------------
+
+#ifndef MAIN_H
+#define MAIN_H
+
+double squareNum(double num);
+
+#endif
+
+--------------------------------------------
+
+              - main.c -
+--------------------------------------------
+
+#include"main.h"
+
+int main()
+{
+    printf("square of 3 is: %f\n", squareNum(3));
+    return 0;
+}
+
+double squareNum(double num)
+{
+    return num * num;
+}
+
+--------------------------------------------
+
