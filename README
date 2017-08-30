@@ -28,7 +28,7 @@ double squareNum(double num)
 --------------------------------------------
 
 
-get compiled to:
+gets compiled to:
 
 
               - main.h -
