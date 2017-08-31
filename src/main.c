@@ -39,8 +39,13 @@ void processFile(char *fname, char *outdir)
         return;
     }
 
-    char *end = strchr(fname, '.');
+    char *end = strrchr(fname, '.');
     *end ='\0';
+    char *tempf = strrchr(fname, '/');
+    if(tempf)
+    {
+        fname = tempf + 1;
+    }
     createOutput(outdir,fname);
 
     char ch;
