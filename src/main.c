@@ -46,7 +46,8 @@ void processFile(char *fname, char *outdir)
     {
         fname = tempf + 1;
     }
-    createOutput(outdir,fname);
+    char *ext = end + 1;
+    createOutput(outdir,fname, ext);
 
     char ch;
     bool inHead = true;
@@ -57,15 +58,15 @@ void processFile(char *fname, char *outdir)
 
         if(ch == '#')
         {
-            char *next = malloc(sizeof(char) * 5); 
-            fgets(next, 5, inputf);
-            if(strcmp(next, "sour") == 0)
+            char *next = malloc(sizeof(char) * 4); 
+            fgets(next, 4, inputf);
+            if(strcmp(next, "src") == 0)
             {
                 printf("printing to source now!\n");
                 inHead = false;
                 while((ch = fgetc(inputf)) != '\n'){}
             }
-            else if(strcmp(next, "head") == 0)
+            else if(strcmp(next, "hdr") == 0)
             {
                 printf("printing to head now!\n");
                 inHead = true;
@@ -106,11 +107,12 @@ void processFile(char *fname, char *outdir)
 FILE *headf = NULL;
 FILE *sourcef = NULL;
 
-bool createOutput(char *outdir, char *file)
+bool createOutput(char *outdir, char *file, char *ext)
 {
     printf("creating files fname: %s outputdir: %s\n", file, outdir);
     char *head = malloc(sizeof(char) * (strlen(outdir) + strlen(file) + 4));
     char *source = malloc(sizeof(char) * (strlen(outdir) + strlen(file) + 4));
+    printf("file extension: %s\n", ext);
 
     strcpy(head, outdir);
     strcat(head, "/");
@@ -120,7 +122,9 @@ bool createOutput(char *outdir, char *file)
     strcpy(source, outdir);
     strcat(source, "/");
     strcat(source, file);
-    strcat(source, ".c\0");
+    strcat(source, ".");
+    strcat(source, ext);
+    strcat(source, "\0");
 
     printf("source: %s\n", source);
     printf("head: %s\n", head);

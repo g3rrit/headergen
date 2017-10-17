@@ -8,7 +8,7 @@ FILE* sourcef;
 
 bool debug;
 
-bool createOutput(char *outdir, char *file);
+bool createOutput(char *outdir, char *file, char *ext);
 bool closeFiles();
 void processFile(char *fname, char *outdir);
 
